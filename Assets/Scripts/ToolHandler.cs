@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameGridButton : MonoBehaviour {
+public class ToolHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+	
 	}
 	
 	// Update is called once per frame

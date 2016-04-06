@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using AssemblyCSharp;
 
 public class ToolButton : MonoBehaviour {
 
 	private Sprite ToolTexture;
+	private ITool ToolToExecute;
+	public GameObject ToolHandler;
+	public ToolTypes ToolType;
 
 	// Use this for initialization
 	void Start () {
 		ToolTexture = GetComponentInParent<Image>().overrideSprite;
 		GetComponentInParent<Toggle> ().onValueChanged.AddListener (OnToggle);
+		ToolToExecute = ToolFactory.GetTool (ToolType);
 	}
 	
 	// Update is called once per frame
