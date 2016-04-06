@@ -5,14 +5,14 @@ using AssemblyCSharp;
 
 public class ToolButton : MonoBehaviour {
 
-	private Sprite ToolTexture;
+	private Image ToolTexture;
 	private ITool ToolToExecute;
 	public ToolHandler toolHandler;
 	public ToolTypes ToolType;
 
 	// Use this for initialization
 	void Start () {
-		ToolTexture = GetComponentInParent<Image>().overrideSprite;
+		ToolTexture = GetComponentInParent<Image>();
 		GetComponentInParent<Toggle> ().onValueChanged.AddListener (OnToggle);
 		ToolToExecute = ToolFactory.GetTool (ToolType);
 	}
@@ -25,11 +25,13 @@ public class ToolButton : MonoBehaviour {
 	void OnToggle(bool newVal)
 	{
 		if (newVal == true) {
-			Cursor.SetCursor (ToolTexture.texture, Vector2.zero, CursorMode.Auto);
+			//Cursor.SetCursor (ToolTexture.texture, Vector2.zero, CursorMode.Auto);
 			toolHandler.SelectedTool = ToolToExecute;
+			toolHandler.ToolImage = ToolTexture;
 		} else {
-			Cursor.SetCursor(null,Vector2.zero,CursorMode.Auto);
+			//Cursor.SetCursor(null,Vector2.zero,CursorMode.Auto);
 			toolHandler.SelectedTool = null;
+			toolHandler.ToolImage = null;
 		}
 	}
 }

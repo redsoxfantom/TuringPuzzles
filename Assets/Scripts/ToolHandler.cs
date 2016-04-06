@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AssemblyCSharp;
+using UnityEngine.UI;
 
 public class ToolHandler : MonoBehaviour {
 
-	public ITool SelectedTool{ private get; set;}
+	public ITool SelectedTool{ get; set;}
+	public Image ToolImage{ get; set; }
 
 	// Use this for initialization
 	void Start () {
