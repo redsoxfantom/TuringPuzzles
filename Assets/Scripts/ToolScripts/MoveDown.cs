@@ -10,23 +10,20 @@
 using System;
 namespace AssemblyCSharp
 {
-	public class ToolFactory
+	public class MoveDown : ITool
 	{
-		public static ITool GetTool(ToolTypes typeOfTool)
+		public MoveDown ()
 		{
-			switch (typeOfTool) {
-			case ToolTypes.MOVE_UP:
-				return new MoveUp();
-			case ToolTypes.MOVE_DOWN:
-				return new MoveDown();
-			case ToolTypes.MOVE_LEFT:
-				return new MoveLeft();
-			case ToolTypes.MOVE_RIGHT:
-				return new MoveRight();
-			default:
-				return null;
-			}
 		}
+
+		#region ITool implementation
+
+		public void Execute ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		#endregion
 	}
 }
 
