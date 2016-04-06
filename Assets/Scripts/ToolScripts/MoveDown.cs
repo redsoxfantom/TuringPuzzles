@@ -23,6 +23,11 @@ namespace AssemblyCSharp
 			throw new NotImplementedException ();
 		}
 
+		public bool CanUseImage()
+		{
+			return true;
+		}
+
 		#endregion
 	}
 }

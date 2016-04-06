@@ -20,6 +20,11 @@ namespace AssemblyCSharp
 		{
 
 		}
+		
+		public bool CanUseImage()
+		{
+			return true;
+		}
 	}
 }
 

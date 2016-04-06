@@ -14,6 +14,7 @@ public class GameGridButton : MonoBehaviour {
 	void Start () {
 		GetComponentInParent<Button> ().onClick.AddListener (GridButtonClicked);
 		baseImage = GetComponentInParent<Image> ();
+		currentImage = baseImage;
 	}
 	
 	// Update is called once per frame
@@ -24,9 +25,8 @@ public class GameGridButton : MonoBehaviour {
 	void GridButtonClicked() {
 		assignedTool = toolHandler.SelectedTool;
 
-		var toolImage = toolHandler.ToolImage;
-		if (toolImage != null) {
-			GetComponentInParent<Image>().overrideSprite = toolImage.sprite;
+		if (toolHandler.TryGetToolImage (out currentImage)) {
+			GetComponentInParent<Image> ().overrideSprite = currentImage.sprite;
 		} else {
 			GetComponentInParent<Image>().overrideSprite = baseImage.sprite;
 		}
