@@ -13,7 +13,7 @@ public class ToolButton : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ToolTexture = GetComponentInParent<Image>();
-		GetComponentInParent<Toggle> ().onValueChanged.AddListener (OnToggle);
+		GetComponentInParent<Button> ().onClick.AddListener(OnClick);
 		ToolToExecute = ToolFactory.GetTool (ToolType);
 	}
 	
@@ -22,16 +22,10 @@ public class ToolButton : MonoBehaviour {
 	
 	}
 
-	void OnToggle(bool newVal)
+	void OnClick()
 	{
-		if (newVal == true) {
-			//Cursor.SetCursor (ToolTexture.texture, Vector2.zero, CursorMode.Auto);
-			toolHandler.SelectedTool = ToolToExecute;
-			toolHandler.ToolImage = ToolTexture;
-		} else {
-			//Cursor.SetCursor(null,Vector2.zero,CursorMode.Auto);
-			toolHandler.SelectedTool = null;
-			toolHandler.ToolImage = null;
-		}
+		//Cursor.SetCursor (ToolTexture.texture, Vector2.zero, CursorMode.Auto);
+		toolHandler.SelectedTool = ToolToExecute;
+		toolHandler.ToolImage = ToolTexture;
 	}
 }

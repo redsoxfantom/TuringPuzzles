@@ -23,6 +23,8 @@ namespace AssemblyCSharp
 				return new MoveLeft();
 			case ToolTypes.MOVE_RIGHT:
 				return new MoveRight();
+			case ToolTypes.DELETE:
+				return new Delete();
 			default:
 				return null;
 			}

@@ -10,13 +10,25 @@
 using System;
 namespace AssemblyCSharp
 {
-	public enum ToolTypes
+	public class Delete : ITool
 	{
-		MOVE_UP,
-		MOVE_DOWN,
-		MOVE_LEFT,
-		MOVE_RIGHT,
-		DELETE
+		public Delete ()
+		{
+		}
+
+		#region ITool implementation
+
+		public void Execute ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		public bool CanUseImage ()
+		{
+			return false;
+		}
+
+		#endregion
 	}
 }
 
