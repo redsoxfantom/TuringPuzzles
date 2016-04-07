@@ -1,0 +1,13 @@
+{
+    "ChallangeText" : "Create a machine that passes any string",
+    "TestStrings" : [
+        {
+            "TestString" : "AAAAA",
+            "ShouldPass" : "true"
+        },
+        {
+            "TestString" : "BBBBB",
+            "ShouldPass" : "true"
+        },
+    ]
+}
