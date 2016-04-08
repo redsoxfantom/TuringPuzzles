@@ -10,15 +10,25 @@
 using System;
 namespace AssemblyCSharp
 {
-	public enum ToolTypes
+	public class Reject : ITool
 	{
-		MOVE_UP,
-		MOVE_DOWN,
-		MOVE_LEFT,
-		MOVE_RIGHT,
-		DELETE,
-		ACCEPT,
-		REJECT
+		public Reject ()
+		{
+		}
+
+		#region ITool implementation
+
+		public void Execute ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		public bool CanUseImage ()
+		{
+			return true;
+		}
+
+		#endregion
 	}
 }
 

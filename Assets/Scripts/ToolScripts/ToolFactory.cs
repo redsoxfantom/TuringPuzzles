@@ -25,6 +25,10 @@ namespace AssemblyCSharp
 				return new MoveRight();
 			case ToolTypes.DELETE:
 				return new Delete();
+			case ToolTypes.ACCEPT:
+				return new Accept();
+			case ToolTypes.REJECT:
+				return new Reject();
 			default:
 				return null;
 			}
