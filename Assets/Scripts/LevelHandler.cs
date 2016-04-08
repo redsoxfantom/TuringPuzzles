@@ -6,6 +6,7 @@ using SimpleJSON;
 public class LevelHandler : MonoBehaviour {
 
 	private List<Level> LoadedLevels;
+	int currLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -33,11 +34,21 @@ public class LevelHandler : MonoBehaviour {
 
 			LoadedLevels.Add(deserializedLevel);
 		}
+
+		currLevel = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public bool TryGetNextLevel(out Level nextLevel)
+	{
+		if (currLevel < LoadedLevels.Count) {
+			nextLevel = LoadedLevels [currLevel];
+			currLevel++;
+			return true;
+		} else {
+			nextLevel = null;
+			return false;
+		}
+
 	}
 }
 
