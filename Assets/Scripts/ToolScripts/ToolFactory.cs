@@ -34,5 +34,12 @@ namespace AssemblyCSharp
 			}
 		}
 	}
+
+	public class ToolExecutionStatus
+	{
+		public String TestString{ get; set; }
+		public ToolOutputDirection NextDirection{ get; set; }
+		public ToolStatus Status{ get; set; }
+	}
 }
 

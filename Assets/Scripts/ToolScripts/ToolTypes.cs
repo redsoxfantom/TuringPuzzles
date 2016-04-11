@@ -20,5 +20,20 @@ namespace AssemblyCSharp
 		ACCEPT,
 		REJECT
 	}
+	public enum ToolOutputDirection
+	{
+		NO_DIRECTION,
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
+	}
+	public enum ToolStatus
+	{
+		NO_STATUS,
+		ACCEPTED,
+		REJECTED,
+		ERROR
+	}
 }
 

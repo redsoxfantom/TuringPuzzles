@@ -17,7 +17,7 @@ public class LevelHandler : MonoBehaviour {
 			var rawJson = JSON.Parse(level.ToString());
 
 			Level deserializedLevel = new Level();
-			deserializedLevel.ChallangeText = rawJson["ChallangeText"];
+			deserializedLevel.ChallangeText = rawJson["ChallengeText"];
 			var rawTestStrings = rawJson["TestStrings"].AsArray;
 			List<LevelTestString> testStrings = new List<LevelTestString>();
 			foreach(var rawTestString in rawTestStrings.Childs)

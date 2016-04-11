@@ -10,9 +10,9 @@
 using System;
 namespace AssemblyCSharp
 {
-	public class MoveDown : ITool
+	public class NullTool : ITool
 	{
-		public MoveDown ()
+		public NullTool ()
 		{
 		}
 
@@ -20,13 +20,12 @@ namespace AssemblyCSharp
 
 		public void Execute (ref ToolExecutionStatus status)
 		{
-			status.NextDirection = ToolOutputDirection.DOWN;
-			status.Status = ToolStatus.NO_STATUS;
+			throw new ToolExecutionException ("Input string ran into an empty space!");
 		}
 
-		public bool CanUseImage()
+		public bool CanUseImage ()
 		{
-			return true;
+			return false;
 		}
 
 		#endregion

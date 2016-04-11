@@ -18,13 +18,6 @@ public class ToolHandler : MonoBehaviour {
 	
 	}
 
-	public void ExecuteTool()
-	{
-		if (SelectedTool != null) {
-			SelectedTool.Execute();
-		}
-	}
-
 	public bool TryGetToolImage(out Image ToolImage)
 	{
 		ToolImage = null;

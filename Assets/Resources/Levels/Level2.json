@@ -1,5 +1,5 @@
 {
-    "ChallengeText" : "Create a machine that passes any string",
+    "ChallengeText" : "Create a machine that rejects any string starting with an 'A'",
     "TestStrings" : [
         {
             "TestString" : "AAAAA",

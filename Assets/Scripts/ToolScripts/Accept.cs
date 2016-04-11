@@ -18,9 +18,10 @@ namespace AssemblyCSharp
 
 		#region ITool implementation
 
-		public void Execute ()
+		public void Execute (ref ToolExecutionStatus status)
 		{
-			throw new NotImplementedException ();
+			status.NextDirection = ToolOutputDirection.NO_DIRECTION;
+			status.Status = ToolStatus.ACCEPTED;
 		}
 
 		public bool CanUseImage ()

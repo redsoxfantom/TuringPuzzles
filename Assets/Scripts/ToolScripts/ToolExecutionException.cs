@@ -10,26 +10,12 @@
 using System;
 namespace AssemblyCSharp
 {
-	public class MoveDown : ITool
+	public class ToolExecutionException : Exception
 	{
-		public MoveDown ()
+		public ToolExecutionException(String msg) : base(msg)
 		{
+
 		}
-
-		#region ITool implementation
-
-		public void Execute (ref ToolExecutionStatus status)
-		{
-			status.NextDirection = ToolOutputDirection.DOWN;
-			status.Status = ToolStatus.NO_STATUS;
-		}
-
-		public bool CanUseImage()
-		{
-			return true;
-		}
-
-		#endregion
 	}
 }
 

@@ -12,7 +12,7 @@ namespace AssemblyCSharp
 {
 	public interface ITool
 	{
-		void Execute();
+		void Execute(ref ToolExecutionStatus status);
 		bool CanUseImage();
 	}
 }

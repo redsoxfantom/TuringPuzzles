@@ -16,9 +16,10 @@ namespace AssemblyCSharp
 		{
 		}
 
-		public void Execute()
+		public void Execute(ref ToolExecutionStatus status)
 		{
-
+			status.NextDirection = ToolOutputDirection.UP;
+			status.Status = ToolStatus.NO_STATUS;
 		}
 		
 		public bool CanUseImage()
