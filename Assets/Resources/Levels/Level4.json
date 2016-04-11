@@ -1,0 +1,37 @@
+{
+    "ChallengeText" : "Create a machine that accepts any string containing exactly 2 'A's",
+    "TestStrings" : [
+        {
+            "TestString" : "AAAAA",
+            "ShouldPass" : "false"
+        },
+        {
+            "TestString" : "BBBBB",
+            "ShouldPass" : "false"
+        },
+        {
+            "TestString" : "ABBBB",
+            "ShouldPass" : "false"
+        },
+        {
+            "TestString" : "BAABB",
+            "ShouldPass" : "true"
+        },
+        {
+            "TestString" : "A",
+            "ShouldPass" : "false"
+        },
+        {
+            "TestString" : "B",
+            "ShouldPass" : "false"
+        },
+        {
+            "TestString" : "AA",
+            "ShouldPass" : "true"
+        },
+        {
+            "TestString" : "BABA",
+            "ShouldPass" : "true"
+        },
+    ]
+}
