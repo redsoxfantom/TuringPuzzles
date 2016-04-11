@@ -21,7 +21,9 @@ namespace AssemblyCSharp
 		public void Execute (ref ToolExecutionStatus status)
 		{
 			if (String.IsNullOrEmpty (status.TestString)) {
-				throw new ToolExecutionException("Test string was empty!");
+				status.Status = ToolStatus.NO_STATUS;
+				status.NextDirection = ToolOutputDirection.DOWN;
+				return;
 			}
 
 			status.Status = ToolStatus.NO_STATUS;
