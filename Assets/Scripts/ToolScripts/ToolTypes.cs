@@ -18,7 +18,8 @@ namespace AssemblyCSharp
 		MOVE_RIGHT,
 		DELETE,
 		ACCEPT,
-		REJECT
+		REJECT,
+		IF_CHECK
 	}
 	public enum ToolOutputDirection
 	{

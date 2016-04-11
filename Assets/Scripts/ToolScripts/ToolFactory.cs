@@ -29,6 +29,8 @@ namespace AssemblyCSharp
 				return new Accept();
 			case ToolTypes.REJECT:
 				return new Reject();
+			case ToolTypes.IF_CHECK:
+				return new IfCheckTool();
 			default:
 				return null;
 			}
