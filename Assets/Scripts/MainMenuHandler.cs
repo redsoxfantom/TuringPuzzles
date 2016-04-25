@@ -9,6 +9,7 @@ public class MainMenuHandler : MonoBehaviour {
 	public Canvas MainMenuCanvas;
 	public Canvas GameCanvas;
 	public Canvas ResultCanvas;
+	public Text StringStatusCanvas;
 	public Text ResultHeader;
 	public Text ResultMessage;
 	public Button ResultButton;
@@ -19,6 +20,7 @@ public class MainMenuHandler : MonoBehaviour {
 		MainMenuCanvas.enabled = true;
 		GameCanvas.enabled = false;
 		ResultCanvas.enabled = false;
+		StringStatusCanvas.enabled = false;
 		gameHandler = GetComponent<GameGridHandler> ();
 		NewGameButton.onClick.AddListener (newGameClicked);
 		TestSolutionButton.onClick.AddListener (testSolutionClicked);
@@ -27,11 +29,13 @@ public class MainMenuHandler : MonoBehaviour {
 
 	void resultDismissed()
 	{
+		StringStatusCanvas.enabled = false;
 		ResultCanvas.enabled = false;
 	}
 
 	void testSolutionClicked()
 	{
+		StringStatusCanvas.enabled = true;
 		gameHandler.TestSolution ();
 	}
 

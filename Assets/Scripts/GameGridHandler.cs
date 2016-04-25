@@ -9,6 +9,7 @@ public class GameGridHandler : MonoBehaviour {
 	public Text challangeText;
 	public GameObject gamePanel;
 	public GameGridButton gameGridButton;
+	public Text StringStatusText;
 
 	private GameGridButton[,] gameGridButtons;
 	private LevelHandler levelHandler;
@@ -25,46 +26,64 @@ public class GameGridHandler : MonoBehaviour {
 		menuHandler = GetComponent<MainMenuHandler> ();
 
 		levelHandler.TryGetNextLevel (out currLevel);
+		InitButtons ();
 		LoadLevel ();
 	}
 
 	public void TestSolution()
 	{
+		StartCoroutine (StepThroughSolution());
+	}
+
+	private IEnumerator StepThroughSolution()
+	{
 		bool testWasSuccessful = true;
 		string errorMsg = null;
-
+		
 		foreach (var testString in currLevel.TestStrings) {
 			Debug.Log(string.Format("Testing String {0}, should pass: {1}",testString.TestString,testString.ShouldPass));
-
+			
 			ToolExecutionStatus status = new ToolExecutionStatus();
 			status.TestString = testString.TestString;
 			int currBtnX = 4;
 			int currBtnY = 7;
 			GameGridButton currBtn = gameGridButtons[currBtnX,currBtnY];
 
-			try
+			while(status.Status == ToolStatus.NO_STATUS)
 			{
-				while(status.Status == ToolStatus.NO_STATUS)
+				try
 				{
+					StringStatusText.gameObject.transform.position = currBtn.gameObject.transform.position;
+					if(status.TestString == String.Empty)
+					{
+						StringStatusText.text = "<empty string>";
+					}
+					else
+					{
+						StringStatusText.text = status.TestString;
+					}
 					currBtn.ExecuteTool(ref status);
 					currBtn = GetNextButton(ref currBtnX, ref currBtnY, status.NextDirection);
 				}
-			}
-			catch (ToolExecutionException ex)
-			{
-				Debug.Log(String.Format("Tool Exception: {0}",ex.Message));
-				status.Status = ToolStatus.ERROR;
-				errorMsg = string.Format("Error when executing step {0}x{1} ({2})",currBtnX,currBtnY,ex.Message);
-			}
-			catch(Exception ex)
-			{
-				Debug.Log(String.Format("General Exception: {0}",ex.Message));
-				status.Status = ToolStatus.ERROR;
-				errorMsg = string.Format("Error when executing step {0}x{1} ({2})",currBtnX,currBtnY,ex.Message);
-			}
 
+				catch (ToolExecutionException ex)
+				{
+					Debug.Log(String.Format("Tool Exception: {0}",ex.Message));
+					status.Status = ToolStatus.ERROR;
+					errorMsg = string.Format("Error when executing step {0}x{1} ({2})",currBtnX,currBtnY,ex.Message);
+				}
+				catch(Exception ex)
+				{
+					Debug.Log(String.Format("General Exception: {0}",ex.Message));
+					status.Status = ToolStatus.ERROR;
+					errorMsg = string.Format("Error when executing step {0}x{1} ({2})",currBtnX,currBtnY,ex.Message);
+				}
+
+				yield return new WaitForSeconds(0.5f);
+			}
+			
 			Debug.Log(string.Format("String test completed with status {0}", status.Status));
-
+			
 			if(!OkToContinue(testString.ShouldPass, status.Status))
 			{
 				testWasSuccessful = false;
@@ -75,30 +94,17 @@ public class GameGridHandler : MonoBehaviour {
 				break;
 			}
 		}
-
+		
 		if (!testWasSuccessful) {
 			Debug.Log ("Test Failed");
 			menuHandler.AlertFailure(errorMsg);
 		} else {
 			Debug.Log("Test Passed");
 			menuHandler.AlertSuccess();
-
+			
 			if(levelHandler.TryGetNextLevel (out currLevel))
 			{
-				ClearLevel();
 				LoadLevel ();
-			}
-		}
-	}
-
-	void ClearLevel()
-	{
-		for(int x = 0; x < 9; x++)
-		{
-			for(int y = 0; y < 8; y++)
-			{
-				GameGridButton btn = gameGridButtons[x,y];
-				Destroy(btn);
 			}
 		}
 	}
@@ -134,10 +140,8 @@ public class GameGridHandler : MonoBehaviour {
 		return gameGridButtons[currBtnX,currBtnY];
 	}
 
-	void LoadLevel()
+	void InitButtons()
 	{
-		challangeText.text = currLevel.ChallangeText;
-
 		gameGridButtons = new GameGridButton[9,9];
 		for(int x = 0; x < 9; x++)
 		{
@@ -145,10 +149,16 @@ public class GameGridHandler : MonoBehaviour {
 			{
 				GameGridButton btn = (GameGridButton)Instantiate(gameGridButton, gamePanelRect.position + new Vector3(x-4.5f,y-3.5f,0), Quaternion.identity);
 				btn.transform.SetParent(gamePanel.transform);
+				btn.transform.SetAsFirstSibling();
 				btn.transform.localScale = new Vector3(1f,1f,0f);
 				btn.toolHandler = toolHandler;
 				gameGridButtons[x,y] = btn;
 			}
 		}
+	}
+
+	void LoadLevel()
+	{
+		challangeText.text = currLevel.ChallangeText;
 	}
 }
